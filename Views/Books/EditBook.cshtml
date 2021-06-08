@@ -1,0 +1,41 @@
+﻿@model CRUDProj.ViewsModel.BookViewModel
+@{
+    ViewBag.Title = "EditBook";
+}
+
+<h2>EditBook</h2>
+@using (Html.BeginForm("EditBook", "Books"))
+{
+    @Html.HiddenFor(x => x.Id)
+    @Html.AntiForgeryToken();
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Author)
+        @Html.TextBoxFor(x => x.Author, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Author, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Description)
+        @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Description, null, new { @class = "text-danger" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.CategoryId)
+        @Html.DropDownListFor(x => x.CategoryId, new SelectList(Model.Categories, "Id", "Name"), "Select Category", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CategoryId, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update" class="btn btn-primary" />
+    </div>
+
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+

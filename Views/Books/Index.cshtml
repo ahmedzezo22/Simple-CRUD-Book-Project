@@ -1,0 +1,44 @@
+﻿@model IEnumerable<CRUDProj.Models.Book>
+@{
+    ViewBag.Title = "Books";
+}
+<h3 class="text-primary">Books</h3>
+<hr />
+<a href="@Url.Action("AddBook","Books")" class="btn btn-outline-info my-2 "><i class="fa fa-plus" style="margin-right: 8px;">CreateBook</i></a>
+@if (Model.Any()) { 
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>AddedOn</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        @foreach (var book in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Description</td>
+                    <td>@book.Author</td>
+                  <td>@book.Category.Name</td>
+                    <td>@book.AddedTime</td>
+                    <td>
+                        <a href="@Url.Action("EditBook","Books",new { id = book.Id })" class="btn btn-primary">Edit</a>
+                        <a href="@Url.Action("Delete","Books",new { id = book.Id })" id="del" class="btn btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+            </tbody>
+        }
+
+
+    </table>
+    }else
+    {
+    <div class="alert alert-danger">No Books found</div>
+    }
+

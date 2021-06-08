@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CRUDProj.Models.Book>
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped" >
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Author</th>
+                <th>AddedOn</th>
+            </tr>
+        </thead>
+        @foreach (var book in Model)
+        {
+    <tbody>
+        <tr>
+            <td>@book.Title</td>
+            <td>@book.Description</td>
+            <td>@book.Author</td>
+            <td>@book.AddedTime</td>
+
+        </tr>
+    </tbody>
+        }
+        
+
+    </table>
+}
+else
+{
+    <div class="alert alert-danger">No Books found</div>
+}
+
+
+
+
